@@ -13,7 +13,11 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-with open("telemetry.json") as f:
+from pathlib import Path
+
+DATA_FILE = Path(__file__).parent.parent / "telemetry.json"
+
+with open(DATA_FILE, "r") as f:
     telemetry = json.load(f)
 
 class RequestBody(BaseModel):
