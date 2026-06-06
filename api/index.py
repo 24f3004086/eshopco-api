@@ -57,4 +57,6 @@ def metrics(data: RequestBody):
             )
         }
 
-    return result
+    return {
+    "regions": result
+}
