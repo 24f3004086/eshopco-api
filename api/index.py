@@ -38,16 +38,14 @@ def metrics(data: RequestBody):
         ]
 
         uptimes = [
-            r["uptime"]
+            r["uptime_pct"]
             for r in rows
         ]
 
         result[region] = {
-            "avg_latency": sum(latencies)/len(latencies),
-            "p95_latency": float(
-                np.percentile(latencies,95)
-            ),
-            "avg_uptime": sum(uptimes)/len(uptimes),
+            "avg_latency": sum(latencies) / len(latencies),
+            "p95_latency": float(np.percentile(latencies, 95)),
+            "avg_uptime": sum(uptimes) / len(uptimes),
             "breaches": sum(
                 1 for x in latencies
                 if x > data.threshold_ms
